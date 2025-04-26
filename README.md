@@ -2,7 +2,5 @@
 ## Daily Progress
 | Day | Work Done |
 |:---|:---|
-| Day 1 | Setup project structure |
-| Day 2 | Created homepage UI |
-| Day 3 | Added login functionality |
-| Day 4 | Fixed bugs and added logout feature |
+| Day 1 | About Nodejs |
+| Day 2 | Basic Modules  |
