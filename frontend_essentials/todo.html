@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<body>
+    <h1>Todo Application! </h1>
+    <input type="text" placeholder="add some tasks here">
+    <button onclick="TodoTask()">Add task!</button>
+    <script>
+        let ctr = 0;
+        function deleteTodo(idx){
+            const eletoDelete = document.getElementById(`todo-${idx}`);
+            // console.log(eletoDelete);
+            eletoDelete.parentNode.remove();
+        }
+        function TodoTask(){
+            //featching the value of the input field
+            var inputVal = document.querySelector("input");
+            //creating div -> span (input Value) and button (delete task);
+            // console.log(inputVal.value);
+            const divEle = document.createElement('div');
+            const spanEle = document.createElement('span');
+            const btnEle = document.createElement('button');
+            console.log(divEle);
+            spanEle.innerHTML = inputVal.value;
+            btnEle.innerHTML = "delete task!"
+            btnEle.setAttribute('id',`todo-${ctr}`);
+            divEle.appendChild(spanEle);
+            divEle.appendChild(btnEle);
+            document.querySelector('body').appendChild(divEle);
+            btnEle.setAttribute("onclick",`deleteTodo(${ctr})`);
+            ctr++;
+            inputVal.value = '';
+        }
+        
+    </script>
+</body>
+</html>

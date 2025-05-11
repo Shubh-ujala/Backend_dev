@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo practice</h1>
+    <button class="submit" onclick="function1()">Click me to add Hello world in the page</button>
+    <script>
+        let ctr = 0;
+        function funcDel(idx){
+            const del  = document.querySelector(`#del-${idx}`);
+            // console.log(del);
+            del.parentNode.remove();
+            // alert("element deleted!");
+            
+        }
+        function function1(){
+            const div = document.createElement('div');
+            const span = document.createElement('span');
+            const delBtn = document.createElement('button');
+            delBtn.innerHTML = 'Delete Me!';
+            // document.querySelector('delBtn').createAttribute(`onlcick=delFunc(ctr)`);
+            delBtn.setAttribute('id',`del-${ctr}`);
+            delBtn.setAttribute('onclick',`funcDel(${ctr})`);
+            ctr++;
+            console.log(delBtn);
+            span.innerHTML = 'Hello world!';
+            div.appendChild(span);
+            div.appendChild(delBtn);
+            document.body.appendChild(div);
+        }
+    </script>
+</body>
+
+</html>
