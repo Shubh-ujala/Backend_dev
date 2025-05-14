@@ -91,3 +91,21 @@ function callback(){
   
 }
 setTimeoutPromisified(5000).then(callback);
+
+
+// promisified version of readfile!
+function readFilePromisified(loc,enc){
+  return new Promise(function (res){
+    fs.readFile(loc,enc,(err,data)=>{
+        if(err){console.log("failed!");}
+        else{
+          res(data);
+        }
+    })
+  })
+}
+function callback1(data){
+  console.log("done!");
+  console.log(data);
+}
+readFilePromisified('./b.txt','utf-8').then(callback1);
