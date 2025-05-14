@@ -79,7 +79,7 @@ p.then(main)
 
 
 // create the promisified version of setTimeOut 
-
+//promise takes function as argument!
 
 function setTimeoutPromisified(tm){
   return new Promise(function(res){
