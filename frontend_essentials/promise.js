@@ -84,24 +84,29 @@ function setTimeoutPromisified(tm){
 
 
 // // promisified version of readfile!
-// function readFilePromisified(loc,enc){
-//   return new Promise(function (res){
-//     fs.readFile(loc,enc,(err,data)=>{
-//         if(err){console.log("failed!");}
-//         else{
-//           // res(data);
-//           res(data);
-//           // console.log(data);
+function readFilePromisified(loc,enc){
+  return new Promise(function (resolve,reject){
+    fs.readFile(loc,enc,(err,data)=>{
+        if(err){reject("error reading file!");}
+        else{
+          // res(data);
+          resolve(data);
+          // console.log(data);
           
-//         }
-//     })
-//   })
-// }
-// function callback1(data){
-//   console.log("done!");
-//   console.log(data);
-// }
-// readFilePromisified('./b.txt','utf-8').then(callback1);
+        }
+    })
+  })
+}
+function callback1(data){
+  console.log("done!");
+  console.log(data);
+}
+readFilePromisified('./b.txt','utf-8')
+    .then(callback1)
+    .catch(function(e){
+      console.log(e);
+      
+    });
 
 
 
