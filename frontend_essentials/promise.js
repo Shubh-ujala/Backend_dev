@@ -118,12 +118,25 @@ function setTimeoutPromisified(tm){
 // },1000)
 
 // fixing callback hell(promise chaining)
-setTimeoutPromisified(1000).then(function(){
+// setTimeoutPromisified(1000).then(function(){
+//   console.log('hi');
+//   return setTimeoutPromisified(3000)
+// }).then(function(){
+//   console.log('hello');
+//   return setTimeoutPromisified(5000);  
+// }).then(function(){
+//   console.log("hello there!");
+// })
+
+//using async await !
+
+async function solve(){
+  await setTimeoutPromisified(1000);
   console.log('hi');
-  return setTimeoutPromisified(3000)
-}).then(function(){
+  await setTimeoutPromisified(3000);
   console.log('hello');
-  return setTimeoutPromisified(5000);  
-}).then(function(){
-  console.log("hello there!");
-})
+  await setTimeoutPromisified(5000);
+  console.log('hello there!'); 
+}
+solve();
+console.log("hey!!!!!");
