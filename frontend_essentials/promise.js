@@ -20,17 +20,7 @@
 
 // waitFor3S(main);
 
-//CALLBACK HELL!!
 
-// setTimeout(function(){
-//     console.log("hi!");
-//     setTimeout(function(){
-//         console.log("hello");
-//         setTimeout(function(){
-//             console.log("hello there!");
-//         },5000)
-//     },3000)
-// },1000)
 
 
 // function random(resolve){//resolve is also a function
@@ -86,29 +76,54 @@ function setTimeoutPromisified(tm){
     setTimeout(res,tm);
   })
 }
-function callback(){
-  console.log("5 seconds passed!");
+// function callback(){
+//   console.log("5 seconds passed!");
   
-}
-setTimeoutPromisified(5000).then(callback);
+// }
+// setTimeoutPromisified(5000).then(callback);
 
 
-// promisified version of readfile!
-function readFilePromisified(loc,enc){
-  return new Promise(function (res){
-    fs.readFile(loc,enc,(err,data)=>{
-        if(err){console.log("failed!");}
-        else{
-          // res(data);
-          res(data);
-          // console.log(data);
+// // promisified version of readfile!
+// function readFilePromisified(loc,enc){
+//   return new Promise(function (res){
+//     fs.readFile(loc,enc,(err,data)=>{
+//         if(err){console.log("failed!");}
+//         else{
+//           // res(data);
+//           res(data);
+//           // console.log(data);
           
-        }
-    })
-  })
-}
-function callback1(data){
-  console.log("done!");
-  console.log(data);
-}
-readFilePromisified('./b.txt','utf-8').then(callback1);
+//         }
+//     })
+//   })
+// }
+// function callback1(data){
+//   console.log("done!");
+//   console.log(data);
+// }
+// readFilePromisified('./b.txt','utf-8').then(callback1);
+
+
+
+//CALLBACK HELL!!
+
+// setTimeout(function(){
+//     console.log("hi!");
+//     setTimeout(function(){
+//         console.log("hello");
+//         setTimeout(function(){
+//             console.log("hello there!");
+//         },5000)
+//     },3000)
+// },1000)
+
+// fixing callback hell(promise chaining)
+setTimeoutPromisified(1000).then(function(){
+  console.log('hi');
+  return setTimeoutPromisified(3000)
+}).then(function(){
+  console.log('hello');
+  return setTimeoutPromisified(5000);  
+}).then(function(){
+  console.log("hello there!");
+})
