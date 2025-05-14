@@ -99,7 +99,10 @@ function readFilePromisified(loc,enc){
     fs.readFile(loc,enc,(err,data)=>{
         if(err){console.log("failed!");}
         else{
+          // res(data);
           res(data);
+          // console.log(data);
+          
         }
     })
   })
