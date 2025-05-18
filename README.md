@@ -2,5 +2,6 @@
 ## Daily Progress
 | Day | Work Done |
 |:---|:---|
-| Day 1 | <a href="https://www.notion.so/Day_1-1daeba894363805e8156eb8194af5d6e?pvs=4">About Nodejs |
+| Day 1 | <a href="https://projects.100xdevs.com/tracks/dom-1/Basics-of-DOM-1">DOM |
+| Day 1 | <a href="https://projects.100xdevs.com/tracks/dom-2/DOM-Part-2--1">DOM-2 |
 | Day 2 | <a href="https://github.com/Shubh-ujala/Backend_dev/tree/main/01_fs_module"> fs Module |
