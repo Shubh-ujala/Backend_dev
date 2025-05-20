@@ -70,6 +70,26 @@ program.command('countWords')
           }
         })
       })
+
+program.command('countLetters')
+      .description('this will count the number of letters inside the file')
+      .argument('<file>','file to read')
+      .action((file)=>{
+        fs.readFile(file,'utf-8',(err,data)=>{
+          if(err){console.log(err);}
+          else{
+            let letters = 0;
+            for(let i = 0 ; i<data.length ; i++){
+                if(data[i] == ' '){
+                  continue;
+                }else{
+                  letters++;
+                }
+            }
+            console.log(`Your file -> '${file}' contains ${letters} letters!`); 
+          }
+        })
+      })
 program.parse();
 // it is spliting on the basis of line change and if we use .split('\n') then it will return the array
 /*Like this 
