@@ -34,9 +34,14 @@ program.command('add-todo')
 program.command('view-list')
   .description('shows the list of items present in the todo list')
   .action(()=>{
-    console.log("✅ Here is your Todo List");
-    fs.readFile("data.json","utf-8",(err,data)=>{
-        if(!err && data){
+      fs.readFile("data.json","utf-8",(err,data)=>{
+          if(!err && data){
+              if(data.length >0){
+                console.log("✅ Here is your Todo List");
+              }else{
+                console.log("Nothing to see here!");
+              }
+            
             let todos = JSON.parse(data);
             // let todos = JSON.stringify(data);
             // console.log(todos);
@@ -45,7 +50,7 @@ program.command('view-list')
                 console.log(`${ctr} => ${ele.todo}`);
                 ctr++;
             });           
-        }
+           }
     })
   })
 program.command('delete-todo')
