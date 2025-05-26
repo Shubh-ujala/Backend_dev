@@ -103,6 +103,10 @@ app.delete('/',function(req,res){
         res.json({
             msg:"One kidney removed!"
         })
+    }else{
+        res.status(403).json({
+            msg:"No kidney is there to remove!"
+        })
     }
 })
 
