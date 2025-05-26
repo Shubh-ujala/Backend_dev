@@ -26,20 +26,89 @@ var users= [{
     name :"John",
     kidney: [{
         healthy : false
-    },{
-        healthy : true
     }]
 }]
 app.get("/",function(req,res){
     //write the logic which return the number of kidneys the user have and how many are healthy
     const johnKidney = users[0].kidney;
-    res.send(johnKidney)
-    
+    let numberOfkidney = johnKidney.length;
+    let numberOfHealthykidney = 0;
+    let numberOfUnHealthyKidney = 0;
+    for(let i = 0 ; i<numberOfkidney ; i++){
+        if(johnKidney[i].healthy == true){
+            numberOfHealthykidney++;
+        }else{
+            numberOfUnHealthyKidney++;
+        }
+    }
+    res.json({
+        user:users[0].name,
+        numberOfkidneys:numberOfkidney,
+        healthyKidney:numberOfHealthykidney,
+        unhealthyKidney:numberOfUnHealthyKidney
+    })
+})
+function checkForUnhealthyKidney(){
+    let flag = false;
+    let johnKidney = users[0].kidney;
+    for(let i = 0 ; i<johnKidney.length ; i++){
+        if(johnKidney[0].healthy == false){
+            flag = true; // means user have unhealthy kidney!
+        }
+    }
+    return flag;
+}
+
+app.post("/",function(req,res){
+    let johnKidney = users[0].kidney;
+    if(johnKidney.length<2){
+        johnKidney.push({
+            healthy:true
+        })
+        // console.log(johnKidney);
+        res.json({
+            msg:"New healty kidney added!"
+        })
+    }else{
+        res.status(404).json({
+            msg:"User is already having two kidneys! how many you want? bro!"
+        })
+    }
 })
 
-console.log(users[0]);
+app.put("/",function(req,res){
+    let johnKidney = users[0].kidney;
+    let boolean = false;
+    for(let i = 0 ; i<johnKidney.length; i++){
+        if(johnKidney[i].healthy == false){
+            boolean = true;
+            johnKidney[i].healthy = true;
+        }
+    }
+    if(boolean && johnKidney.length<=2){
+        res.json({
+            msg:"Kideny replaced Successfully!"
+        })
+    }else{
+        res.status(403).json({
+            msg:"No kideny! to be replaced!"
+        })
+    }  
+})
+
+app.delete('/',function(req,res){
+    let johnKidney = users[0].kidney;
+    if(johnKidney.length>0  && johnKidney.length<=2){
+        johnKidney.pop();
+        res.json({
+            msg:"One kidney removed!"
+        })
+    }
+})
+
+// console.log(users[0]);
 app.listen(3000)
 
-
+// it works !! it is a kind of backend i have handled! (check the response in the postman!) :)
 
 
