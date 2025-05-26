@@ -20,22 +20,46 @@ Body => whenever we are senfing some data with the request then the data that we
 
 // let's use express!!
 
-const express = require('express')
+// const express = require('express')
+// const app = express();
+// // defining route handler
+// app.get('/',function(req,res){
+//     res.send("Hello world!");
+// })
+
+// //sending json data to the client
+// app.get('/send',function(req,res){
+//     res.json({
+//         name:"shubh"
+//     });
+// })
+// app.get('/html',function(req,res){
+//     res.send("<b>hi there!</b>");
+// })
+
+
+// app.listen(3000);// which port you want to listen
+
+
+const express = require('express');
+function calculateSum(n){
+    let ans = 0;
+    for(let i = 1 ;  i < n ; i++){
+        ans+= i;
+    }
+    return ans;
+}
+
 const app = express();
-// defining route handler
-app.get('/',function(req,res){
-    res.send("Hello world!");
+app.get("/",(req,res)=>{
+    const n = req.query.n;
+    const ans = calculateSum(n);
+    res.send(ans.toString());
 })
 
-//sending json data to the client
-app.get('/send',function(req,res){
-    res.json({
-        name:"shubh"
-    });
-})
-app.get('/html',function(req,res){
-    res.send("<b>hi there!</b>");
-})
+// app.listen(3000);
 
+// we can also get this response on our phone because it is connected with the same wifi so this is how you can access in the phone .... first of all open terminal and wrrite ipconfig there ans there you can see the ipv4 address `192.168.20.11`(this is in my case) and then open the browser on the phone and then write this `192.168.20.11:3000` and then you will be able to see the response! 
 
-app.listen(3000);// which port you want to listen
+// query parameters is what we are adding after the route using ? like this -> for the above code we will write this in the browser `https://localhost:3000/?n=10` if we have more than one parameter then we can do like this `https://localhost:3000/?n=10&m=20` ans so on 
+
