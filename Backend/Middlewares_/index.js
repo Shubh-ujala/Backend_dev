@@ -18,7 +18,7 @@ function isOldEnoughMiddleware(req,res,next){
         next();// passing the argument to the next middleware  
     }else{
         res.json({
-            msg:"Sorry you are not of age yet!"
+            msg:"Sorry you are 14years old yet!"
         })
     }
 }
