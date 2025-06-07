@@ -1,0 +1,23 @@
+{
+  "name": "backend!(daily)",
+  "version": "1.0.0",
+  "description": "| Content | Work Done |\r |:---|:---|\r |  DOM | <a href=\"https://projects.100xdevs.com/tracks/dom-1/Basics-of-DOM-1\">link! |\r | DOM (Advanced) | <a href=\"https://projects.100xdevs.com/tracks/dom-2/DOM-Part-2--1\">link! |\r | Fs Module | <a href=\"https://github.com/Shubh-ujala/Backend_dev/tree/main/01_fs_module\"> link! |\r | Commander | <a href=\"https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/CLI_assignment\"> link! |\r | HTTP | <a href=\"https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/HTTP\"> link! |\r | MiddleWares | <a href=\"https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/Middlewares_\"> link! |",
+  "main": "Axios_vs_fetch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shubh-ujala/Backend_dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shubh-ujala/Backend_dev/issues"
+  },
+  "homepage": "https://github.com/Shubh-ujala/Backend_dev#readme",
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}
