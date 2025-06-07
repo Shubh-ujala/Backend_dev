@@ -76,4 +76,5 @@ app.get("/ride2"...)
 
 but this approach will only works for all the routes below app.use()
 
+💀 one of the biggest usecase of middleware is authentication!
 */
