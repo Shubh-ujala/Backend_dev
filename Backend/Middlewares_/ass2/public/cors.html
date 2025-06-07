@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <script>
+        async function sendReq(){
+            const a = document.getElementById("a").value;
+            const b = document.getElementById("b").value;
+            const response  = await axios.post("http://localhost:3001/sum",{
+                //we cannot send the request due to cors error! by saying this Access to XMLHttpRequest at 'http://localhost:3001/sum' from origin 'http://localhost:3000' has been blocked by CORS policy
+                // ~ it will works on the postman but cannot work on the browser due to cors error
+
+                //in simple words if we are sending the request from one domain to another then cors comes into the picture( eg. hosting the frontend in the different domain and hosting the backend in the different domain is getting blocked due to cors)
+
+                a:a,
+                b:b,
+            })
+            console.log(response.data);
+        }
+    </script>
+    <!-- //servers a folder over http 
+    npx serve we have to run then we will somehow render our webpage 
+    --> 
+</head>
+<body>
+    <input type="text" id="a" placeholder="First Value">
+    <input type="text" id="b" placeholder="Second Value">
+    <button onclick="sendReq()">Find Sum</button>
+</body>
+</html>
