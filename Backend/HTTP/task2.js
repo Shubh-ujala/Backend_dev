@@ -9,7 +9,9 @@ function getCount(req,res,next){
 }
 app.use(getCount);
 app.get("/",(req,res)=>{
-    res.send("hi");
+    res.json({
+        msg:"server hit!"
+    })
 
 })
 app.get("/getCount",function(req,res){
