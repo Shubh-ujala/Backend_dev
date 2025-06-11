@@ -8,3 +8,5 @@
 | Commander | <a href="https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/CLI_assignment"> link! |
 | HTTP | <a href="https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/HTTP"> link! |
 | MiddleWares | <a href="https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/Middlewares_"> link! |
+| API | <a href="https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/Practice_API"> link! |
+| Authentication | <a href="https://github.com/Shubh-ujala/Backend_dev/tree/main/Backend/Authentication"> link! |
