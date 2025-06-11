@@ -25,6 +25,10 @@ function auth(req,res,next){
     }
 
 }
+//localhost:3000
+app.get("/",function(req,res){
+    res.sendFile(__dirname+"/public/index.html")
+})
 
 app.post("/signup",logger,function(req,res){
     const username = req.body.username;
@@ -72,12 +76,14 @@ app.get("/me",logger,auth,function(req,res){
             if(u.username === req.username){
                 foundUser = u;
             }
+        })
+        if(foundUser){
             res.json({
                 username:foundUser.username,
                 password:foundUser.password
             })
-        })
+        }
     
 })
 
-app.listen(1010)
+app.listen(3000)

@@ -1,0 +1,37 @@
+first of all we have created our backend which is quite easy in this case we just simply have to use the express and create the 3 major routes /singup , /signin , /me and then after writing all the logics we have moved towards the frontend part!
+
+in frontend firstly we have made three divs one for signUp one for signIn and last on for the information of the user and then we have perform the DOM manipulations and wrote the funcitons signUp,signIn,logOut
+
+we have made this functions async because we are using the axios and it returns promise to us so we have to await it 
+
+and then inside the ⭐signUp
+- since we have to send the post request to the backend so we have used the axios.post and the url `http://localhost:3000/signup` along with the username and password 
+
+and then inside the ⭐signIn
+- again we have send the post request, along with the username and password to the server but this time we have to store the response as well becuase in this route the backend is responsing us with the jwt token for which we have created the constant response in which we are getting the data and inside the data we will be having the token as well ..
+and after getting this token we have to set this token to our localStorage for which we have used `localStorage.setItem()` and done! we have done with the signin feature
+
+and then inside the ⭐getUserInfo
+this funciton will we called from the starting of the webpage and in this function we will get the response by using `axios.get(http://localhost:3000/me)` and along with this we also have to send the token inside the header for which we will we sending header request like this -> 
+`axios.get("http://localhost:3000/me", {
+    headers: {
+        token: localStorage.getItem("token")
+    }
+});
+`
+here you can see that we have send the token inside the headers! and then our backend will verify the token and send back the respective response to the user!
+
+and at last we have created a ⭐logout() function
+in which we simply remove the token by using `localStorage.removeItem("token")`
+
+And done! we have created simple authenticated webpage
+
+
+
+🚀One important thing we have to notice here inside the backend is 
+//localhost:3000
+app.get("/",function(req,res){
+    res.sendFile(__dirname+"/public/index.html")
+})
+
+here we sort of hosted our frontend in localhost:3000 means whenever someone hits the "/" route we just simply serve them our frontend 

@@ -1,0 +1,83 @@
+//this is the simple full stack application which contains the singup singin and /me route here are some basic functionallity of the code through this code we can learn how we can call the backend using the axios and how to store the data inside the localStorage ! this is quite good example to understand the basic working of the full stack application
+
+<html>
+    <head>
+        <title>Auth website</title>
+    </head>
+    <!-- using axios to send the request to backend! -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <script>
+        async function signup(){
+            const username= document.getElementById("signup-username").value;
+            const password= document.getElementById("signup-password").value;
+
+            await axios.post("http://localhost:3000/signup",{
+                username:username,
+                password:password
+            })
+
+            alert("You are signed up!")
+        }
+        async function signin(){
+            const username= document.getElementById("signin-username").value;
+            const password= document.getElementById("signin-password").value;
+
+            const response = await axios.post("http://localhost:3000/signin",{
+                username:username,
+                password:password
+            })
+            // console.log(response);
+            
+            localStorage.setItem("token",response.data.token);
+            alert("You are signed in!")
+        }
+        async function getUserInfo(){
+            // const response = await axios.get("http://localhost:3000/me",{
+            //     headers: {
+            //         token:  localStorage.getItem("token")
+            //     }
+            // })
+            // document.getElementById("information").innerHTML = `Username: ${response.data.username}  Password: ${response.data.password}`
+            try {
+                const response = await axios.get("http://localhost:3000/me", {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+                });
+
+                document.getElementById("information").innerHTML =
+                `Username: ${response.data.username}  Password: ${response.data.password}`;
+            } catch (err) {
+                console.error(err);
+            }
+
+        }
+        getUserInfo();
+        function logout(){
+            localStorage.removeItem("token");
+        }
+    </script>
+    <body>
+        <div>
+            SignUp
+            <input type="text" name="username" placeholder="username" id="signup-username">
+            <input type="password" name="password" placeholder="password" id="signup-password">
+            <button onclick="signup()">Submit</button>
+        </div>
+        <div>
+            SignIn
+            <input type="text" name="username" placeholder="username" id="signin-username">
+            <input type="password" name="password" placeholder="password" id="signin-password">
+            <button onclick="signin()">Submit</button>
+        </div>
+        <div>
+            User Information:
+            <div id="information"></div>
+        </div>
+        <div>
+            <button onclick="logout()">LogOut</button>
+        </div>
+    </body>
+</html>
+
+
