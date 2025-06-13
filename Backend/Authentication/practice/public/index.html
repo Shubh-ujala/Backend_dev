@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>statup</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+</head>
+<body>
+    <div>
+        <div id="main-signUp">
+            <div style="margin-bottom: 3px;">SignUp</div>
+            <input type="text" id="signup-user" placeholder="username">
+            <input type="password" placeholder="password" id="signup-password">
+            <button onclick="signup()" style="cursor:pointer;">Submit</button>
+        </div>
+        <div style="margin-top:10px" id="main-signIn">
+            <div style="margin-bottom: 3px;">SignIn</div>
+            <input type="text" id="signin-user" placeholder="username">
+            <input type="password" placeholder="password" id="signin-password">
+            <button onclick="signin()" style="cursor:pointer;">Submit</button>
+        </div>
+        <div style="margin-top:10px" id="userInfo">
+            <div>Users Information</div>
+            <div id="info"></div>
+        </div>
+        <div id="logout" style="margin-top:20px;">
+            <button style="cursor: pointer;" onclick="logmeout()">Logout</button>
+        </div>
+
+        <!-- <div class="about" style="margin-top:20px">
+            <button>About</button>
+        </div> -->
+    </div>
+    <script>
+        // console.log("hello")
+        const logout = document.getElementById('logout');
+        logout.style.display = "none";
+
+        async function signup(){
+            const username = document.getElementById("signup-user").value;
+            const password = document.getElementById("signup-password").value;
+            try{
+                const response = await axios.post("http://localhost:5050/signup",{
+                    username:username,
+                    password:password,
+                })
+                if(response.status == 200){
+                    alert("You just signed up!");
+                    const div = document.getElementById("main-signUp")
+                    div.style.display = "none"
+                }else{
+                    throw new error("Error signing up!")
+                }
+            }catch(err){
+                alert("User already exist!");
+            }
+            
+        }
+        
+        //signin
+        async function signin(){
+            const username = document.getElementById('signin-user').value;
+            const password = document.getElementById('signin-password').value;
+            try{
+                const response = await axios.post("http://localhost:5050/signin",{
+                username,
+                password
+                })
+                if(response.status == 200){
+                    alert("Successfully Signned up!")
+                    localStorage.setItem("token",response.data.token)
+                    const signindiv = document.getElementById("main-signIn");
+                    const div = document.getElementById("main-signUp")
+                    div.style.display = "none"
+                    signindiv.style.display = "none";
+                    logout.style.display = "block";
+                    getUserInformation();
+                }
+            }catch(err){
+                alert("Signup first!")
+            }
+        }
+        
+        async function getUserInformation(){
+            const token = localStorage.getItem("token");
+            const response = await axios.get("http://localhost:5050/me",{
+                headers:{
+                    token:token
+                }
+            })
+            const infodiv = document.getElementById('info');
+            infodiv.innerHTML = `Username is ${response.data.username} and Password is ${response.data.password}`           
+        }
+        async function logmeout(){
+            localStorage.removeItem("token");
+            window.location.href = "/";
+            //this will redirect us back to the home page!
+        }
+    </script>
+</body>
+</html>
