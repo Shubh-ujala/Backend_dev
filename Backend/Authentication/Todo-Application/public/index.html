@@ -55,7 +55,7 @@
               token:header
             }
           })
-          console.log(response.data.todo);// here all of the users todo will be returned
+          //console.log(response.data.todo);// here all of the users todo will be returned
           const currTodos = response.data.todo;
            const newTodos = currTodos.filter(todo => !todo.completed);
           // newTodos = currTodos.filter((u)=>{
