@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todos</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+
+</head>
+<body class="bg-purple-300">
+  <div class="flex justify-center h-screen items-center mt-[-10px] overflow-auto">
+    <div class="border-purple-300 rounded-2xl w-100 p-8 bg-purple-300 shadow-2xl" id="main">
+      <div class="flex justify-between">
+        <h1 class="text-xl font-bold text-purple-600">Your Todo List</h1>
+        <div class="text-white font-semibold border-red-500 bg-red-500 px-2 rounded-lg cursor-pointer" onclick="logout()">Logout</div>
+      </div>
+
+      <input type="text" id="mytodo" placeholder="Add a new todo" class="border-purple-300 w-full rounded-lg p-2 bg-white mt-3">
+      <button class="w-full border-purple-800 rounded-lg p-2 mt-6 bg-purple-800 text-white cursor-pointer" onclick="addtodo()">Add Todo</button>
+
+      <!-- Container to show all todos -->
+      <div id="todos" class="w-full mt-4 overflow-y-auto max-h-[60vh] pr-2"></div>
+    </div>
+  </div>
+
+  <script>
+    const header = localStorage.getItem("token")
+     window.onload = (e)=>rendertodo();
+     async function deleteme(i){
+       
+        const itemToDelete = document.getElementById(i).innerHTML
+        // console.log(itemToDelete);
+        location.reload();
+        
+        const response = await axios.delete("http://localhost:8080/deleteme",
+        {
+          headers:{
+            token:header
+          },
+          data:{
+            item:itemToDelete
+          }
+        }
+        )
+        
+        // console.log(response.todos);
+        
+        
+     }
+      async function rendertodo() {
+        try{
+            const response = await axios.get("http://localhost:8080/mytodos",{
+            headers:{
+              token:header
+            }
+          })
+          console.log(response.data.todo);// here all of the users todo will be returned
+          const currTodos = response.data.todo;
+           const newTodos = currTodos.filter(todo => !todo.completed);
+          // newTodos = currTodos.filter((u)=>{
+          //    u.completed == true
+          // });
+          // console.log(newTodos);
+          
+
+          const div = document.getElementById('main')
+          var i = 0;
+          let flag = false;
+          while(i<currTodos.length){
+            if(response.data.todo[i].completed == false){
+              const innerDiv = document.createElement('div');
+              const scrollbar = document.getElementById("todos");
+              innerDiv.setAttribute("class","border-purple-300 w-full rounded-lg p-2 bg-white mt-3 cursor-pointer")
+              innerDiv.setAttribute("id",`${response.data.todo[i].id}`);
+              innerDiv.setAttribute("onclick",`deleteme(${response.data.todo[i].id})`);
+              const title = response.data.todo[i].title;
+              if(title != ''){
+                innerDiv.innerHTML = title;
+                scrollbar.appendChild(innerDiv)
+
+              }else{
+                flag= true;
+              }
+            }
+            i++;
+            
+          }
+        }
+        catch(err){
+          alert('Something wents wrong!');
+        }
+
+      }
+      async function addtodo(){
+          try{
+              const response = await axios.put("http://localhost:8080/todos",
+              {
+                title:document.getElementById('mytodo').value
+              }
+              ,{
+                headers:{
+                    token:header
+                }
+              })
+              location.reload();
+          }catch(err){
+            alert("Something wents wrong!")
+          }
+      }
+      function logout(){
+        localStorage.removeItem("token");
+        window.location.href = "/"
+      }
+    
+  </script>
+</body>
+</html>

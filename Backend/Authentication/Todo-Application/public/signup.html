@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+</head>
+<body>
+    <div class="flex justify-center h-screen items-center w-screen bg-purple-300">
+        <div class="border-purple-300 rounded-2xl w-100 h-80 px-7 pt-4 bg-purple-300 shadow-2xl">
+            <h1 class="text-xl font-bold text-purple-600">Signup</h1>
+            <p class="text-sm text-purple-800 mt-4">Username:</p>
+            <input type="text" id="signup-username" placeholder="Username" class="border-purple-300 w-full rounded-lg p-2 bg-white mt-1">
+            <p class="text-sm text-purple-800 mt-4">Password:</p>
+            <input type="text" id="signup-password" placeholder="Password" class="border-purple-300 w-full rounded-lg p-2 bg-white mt-1">
+            <br>
+            <button class="w-full border-purple-800 rounded-lg p-2 mt-4 bg-purple-800 text-white cursor-pointer mb-2" onclick="signup()">Signup</button>
+            <br>
+            <div id="errmsg"></div>
+            <span class="text-sm ">Already have an account?</span> <span ><button class="cursor-pointer text-sm text-yellow-800" onclick="redirectSigin()">Sign In</button></span>
+        </div>
+    </div>
+    <script>
+        function redirectSigin(){
+            window.location.href  = "/signinpage"
+        }
+        async function signup(){
+            const username = document.getElementById("signup-username").value;
+            const password = document.getElementById("signup-password").value;
+            if(username === "" || password === ""){
+                alert("Provide both username and password");
+            }else{
+                try{
+                    const response = await axios.post("http://localhost:8080/signup",{
+                        username,
+                        password
+                    })
+                    if(response.status == 200){
+                        alert("Successfully signed up!")
+                        window.location.href  = "/signinpage"
+                    }else{
+                        throw new error(response.msg)
+                    }
+                }catch(err){
+                    const div = document.getElementById("errmsg");
+                    div.setAttribute("class"," text-red-500 text-sm mb-[-2px]")
+                    div.innerHTML = err.response.data.msg; 
+                }
+            }
+        }
+    </script>
+</body>
+</html>

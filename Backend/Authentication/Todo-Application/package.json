@@ -1,0 +1,19 @@
+{
+  "name": "todo-application",
+  "version": "1.0.0",
+  "description": "this is the todo-application having the authentication functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shubh ujala",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^3.25.64"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}

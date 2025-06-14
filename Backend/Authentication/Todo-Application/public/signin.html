@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signin</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+</head>
+<body>
+    <div class="flex justify-center h-screen items-center w-screen bg-purple-300">
+        <div class="border-purple-300 rounded-2xl w-100 h-80 px-7 pt-4 bg-purple-300 shadow-2xl">
+            <h1 class="text-xl font-bold text-purple-600">Signin</h1>
+            <p class="text-sm text-purple-800 mt-4">Username:</p>
+            <input type="text" id="signin-username" placeholder="Username" class="border-purple-300 w-full rounded-lg p-2 bg-white mt-1">
+            <p class="text-sm text-purple-800 mt-4">Password:</p>
+            <input type="text" id="signin-password" placeholder="Password" class="border-purple-300 w-full rounded-lg p-2 bg-white mt-1">
+            <br>
+            <div id="errmsg"></div>
+            <button class="w-full border-purple-800 rounded-lg p-2 mt-6 bg-purple-800 text-white cursor-pointer" onclick="signin()">Signin</button>
+            <br>
+        </div>
+    </div>
+    <script>
+        async function signin(){
+            const username = document.getElementById("signin-username").value;
+            const password = document.getElementById("signin-password").value;
+            try{
+                const response = await axios.post("http://localhost:8080/signin",{
+                    username,
+                    password
+                })
+                
+                const token = response.data.token;
+                localStorage.setItem("token",token);
+                const verifyUser = await  axios.get("http://localhost:8080/me",{
+                    headers:{
+                        token:token
+                    }
+                })
+                if(verifyUser){
+                    window.location.href = "/homepage"
+                }
+                
+            }catch(err){
+                const div = document.getElementById("errmsg");
+                div.setAttribute("class"," text-red-600 text-sm mb-[-2px]")
+                div.innerHTML = err.response.data.msg;
+            }
+        }
+    </script>
+</body>
+</html>

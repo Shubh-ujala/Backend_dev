@@ -25,7 +25,6 @@ function findUser(username,password){
 }
 //this middleware uses zod and checks the format of the username and password
 function checkUsersDetails(req,res,next){
-    let flag = true;
     const usernameResponse = usernameSchema.safeParse(req.body.username);
     const passwordResponse = passwordSchema.safeParse(req.body.password);
     if(! usernameResponse.success || !passwordResponse.success){
