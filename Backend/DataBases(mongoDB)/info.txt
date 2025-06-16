@@ -1,0 +1,11 @@
+FE -> react
+BE -> nodejs/express  it can be written in the node,go,rust 
+
+but database is common among them 
+
+we are going to learn NOSQL database(easy to learn)
+
+MongoDB -> NoSQL means non traditional model (non tabular schema)
+schema -> how does your data looks like (means structure)
+mongoDB is schemaLess(schema Flexibility) & Scalable!
+
