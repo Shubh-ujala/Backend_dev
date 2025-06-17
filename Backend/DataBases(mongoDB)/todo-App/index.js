@@ -9,7 +9,7 @@ const { fa } = require("zod/v4/locales");
 // const {auth} = require("./auth");
 // const JWT_SECRET = "THISISTHESECURITYKEY"
 const app = express();
-mongoose.connect("mongodb+srv://shubhujala:shubh%40mongoDB@cluster0.inu9ksb.mongodb.net/todo-app-practice");
+mongoose.connect("");
 app.use(express.json());
 
 
