@@ -45,7 +45,10 @@ const router = createBrowserRouter(
       element={<Github/>}
       ></Route>
     </Route>
-  )
+  ),
+  {
+    basename:"/sample-deployment"
+  }
 )
 
 createRoot(document.getElementById('root')).render(

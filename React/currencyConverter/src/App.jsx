@@ -41,7 +41,7 @@ function App() {
                                 label="From"
                                 amount = {amount}
                                 currencyOptions = {options}
-                                onCurrencyChnage={(currency)=> setamount(currency)}
+                                onCurrencyChange={(currency)=> setfrom(currency)}
                                 selectCurrency={from}
                                 onAmountChange={(amount)=> setamount(amount)}
                             />
@@ -60,7 +60,7 @@ function App() {
                                 label="To"
                                 amount = {convertedAmount}
                                 currencyOptions = {options}
-                                onCurrencyChnage={(currency)=> setto(currency)}
+                                onCurrencyChange={(currency)=> setto(currency)}
                                 selectCurrency={to}
                                 amountDisable
                             />
