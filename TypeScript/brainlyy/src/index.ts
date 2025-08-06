@@ -6,8 +6,8 @@ import { contentModel, LinkModel, userModel } from './db';
 import { auth } from './middleware';
 import { random } from './utils';
 import cors from 'cors';
-const JWT_SECRET =  "DJFHJOKFHKJSFDH"
-//Could not find a declaration file for module 'express'. 
+const JWT_SECRET =  ""
+//Could not find a declaration file for module 'express'.DJFHJOKFHKJSFDH
 
 // this import will complain because we are using express module and in the express module we don't have any declaration file (.d.ts) we can check this in the npm webpage ! so there is a ugly way to fix it just write @ts-ignore comment on the top of the import like this {// @ts-ignore <- we should ignore using this } and the error goes away! or there is a good way to install npm install -D @types/express and then it will not going to complain at all :)
 
