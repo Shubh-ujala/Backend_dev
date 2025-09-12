@@ -1,19 +1,19 @@
 {
-  "name": "prisma_class",
+  "name": "prisma_practice",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsc -b && node ./dist/index.js"
+    "dev": "npx tsc -b && node ./dist/todo.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@prisma/client": "^6.15.0",
-    "prisma": "^6.15.0",
+    "@prisma/client": "^6.16.0",
+    "prisma": "^6.16.0",
     "typescript": "^5.9.2"
   }
 }
